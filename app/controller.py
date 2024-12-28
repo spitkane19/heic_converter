@@ -20,6 +20,8 @@ class controller:
         selected_folder = QFileDialog.getExistingDirectory(
             parent=self.parent_window, caption="Select Output Folder", dir=""
         )
+        self.parent_window.set_output_list(selected_folder)
+        return selected_folder
 
     def convert_files(self):
         # TODO Multithread conversion logic

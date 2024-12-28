@@ -10,6 +10,7 @@ from PySide6.QtWidgets import (
     QListWidget,
     QFrame,
     QProgressBar,
+    QLineEdit,
 )
 from PySide6.QtGui import QPixmap
 
@@ -21,7 +22,7 @@ class ui_window(QMainWindow):
         super().__init__(parent)
 
         self.setWindowTitle("Heic Converter")
-        self.resize(800, 800)
+        self.resize(800, 500)
         self.controller = controller(self)
 
         self.central_widget = QWidget(self)
@@ -52,6 +53,7 @@ class ui_window(QMainWindow):
         self.file_chooser_layout.addWidget(self.select_button)
 
         self.files_chosen = QListWidget()
+        self.files_chosen.setFixedSize(400, 200)
         self.file_chooser_layout.addWidget(self.files_chosen)
 
         self.vertical_box.addWidget(self.file_chooser_frame)
@@ -64,7 +66,8 @@ class ui_window(QMainWindow):
         self.output_button.released.connect(self.controller.select_output_folder)
         self.output_layout.addWidget(self.output_button)
 
-        self.output_list = QListWidget()
+        self.output_list = QLineEdit()
+        self.output_list.setDisabled(True)
         self.output_layout.addWidget(self.output_list)
 
         self.vertical_box.addWidget(self.output_frame)
@@ -111,3 +114,6 @@ class ui_window(QMainWindow):
             )  # Allow scaling to fit the QLabel size
         else:
             self.image_label.setText("Failed to load image")
+
+    def set_output_list(self, output):
+        self.output_list.setText(output)

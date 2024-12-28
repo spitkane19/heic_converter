@@ -2,7 +2,7 @@ import sys
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QStyleFactory
 
-from ui import ui_window
+from app.ui import ui_window
 
 
 class MainWindow(QMainWindow):

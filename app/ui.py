@@ -9,10 +9,11 @@ from PySide6.QtWidgets import (
     QWidget,
     QListWidget,
     QFrame,
+    QProgressBar,
 )
 from PySide6.QtGui import QPixmap
 
-from controller import controller
+from app.controller import controller
 
 
 class ui_window(QMainWindow):
@@ -87,6 +88,8 @@ class ui_window(QMainWindow):
         self.convert_button = QPushButton("Convert chosen files")
         self.convert_button.released.connect(self.controller.convert_files)
         self.vertical_box.addWidget(self.convert_button)
+        self.progress_bar = QProgressBar(value=0)
+        self.vertical_box.addWidget(self.progress_bar)
 
         # Add the main vertical layout to the central widget
         self.central_widget.layout().addLayout(self.vertical_box)
